@@ -56,9 +56,9 @@ class NumpyDataGenerator:
                 # just discard the first row
                 if column_id != "ID":
                     
-                    self.logger.debug("Processing image: " + column_id.split('.')[0] + '_pretty.png' )
+                    self.logger.debug("Processing image: " + column_id.split('.')[0] + '.png' )
                     # load first the image from the folder
-                    eye_image = os.path.join(self.training_path, column_id.split('.')[0] + '_pretty.png')
+                    eye_image = os.path.join(self.training_path, column_id.split('.')[0] + '.png')
                     image = cv2.imread(eye_image)
                     image = cv2.resize(image, (224,224))
                     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -353,7 +353,7 @@ class NumpyDataGenerator:
 def main(argv):
     start = time.time()
     image_width = 224
-    training_path = r'/media/user_home2/ynsuarez/AML/Proyecti/ODIR-5K seg/pretty_preds' 
+    training_path = r'/media/user_home2/ynsuarez/AML/Proyecti/ODIR-5K/Training_Dataset_treated_224' 
     testing_path = r'/media/user_home2/ynsuarez/AML/Proyecti/ODIR-5K/Testing_Images_treated' + '_' + str(image_width)
     augmented_path = r'C:\temp\ODIR-5K_Training_Dataset_augmented' + '_' + str(image_width)
     csv_file = r'/media/user_home2/ynsuarez/AML/Proyecti/ODIR/ocular-disease-intelligent-recognition-deep-learning/ground_truth/odir.csv'
