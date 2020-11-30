@@ -30,8 +30,8 @@ def process_all_images():
 
 
 if __name__ == '__main__':
-    source_folder = r'/media/user_home2/ynsuarez/AML/Proyecti/ODIR-5K seg/pretty_preds'
-    destination_folder = r'/media/user_home2/ynsuarez/AML/Proyecti/ODIR-5K seg/Training_Dataset_cropped'
+    source_folder = r'/media/user_home2/ynsuarez/AML/Proyecti/ODIR-5K/Training Images'
+    destination_folder = r'/media/user_home2/ynsuarez/AML/Proyecti/ODIR-5K/Training_Dataset_cropped'
     # create logger
     logging.config.fileConfig('logging.conf')
     logger = logging.getLogger('odir')
