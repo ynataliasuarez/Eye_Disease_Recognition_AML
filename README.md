@@ -61,4 +61,19 @@ python main.py --mode demo --filename /media/user_home2/ynsuarez/AML/Proyecti/OD
 
 ## GANS
 
-The generation of images can be observe in BCV007 
+The generation of images can be observe in BCV007, you should create a new conda environment for this task. 
+To create the new environment run the following line: 
+```
+$ conda create --name envname python=3.7.6
+```
+To install the remaining requirements run the following: 
+```
+$ conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=9.2 -c pytorch
+$ pip install -r requirements.txt
+
+```
+To start, run the following line inside the StarGAN folder: 
+```
+$ python main.py
+```
+
