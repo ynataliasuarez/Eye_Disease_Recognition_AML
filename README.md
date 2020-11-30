@@ -28,12 +28,9 @@ Absl:
 ```cmd 
 conda install -c anaconda absl-py
 ```
-In case of using the original data of the challenge, place all the files in the following folders, however, if you are using the folders located in the BCV0001 machine, ignore the following three steps:  
-```cmd
-ODIR-5K_Training_Dataset
-ODIR-5K_Testing_Images
-```
-And create the following folders
+
+
+In case of using the original data of the challenge, create the following folders, however, if you are using the folders located in the BCV0001 machine, ignore the following three steps: 
 ```cmd
 ODIR-5K_Testing_Images_cropped
 ODIR-5K_Testing_Images_treated_224
@@ -51,6 +48,7 @@ And finally run the following command:
 ```cmd
 python odir_patients_to_numpy.py
 ```
+If you prove the method in BCV001 n
 
 To run the proposed method use the following command.
 ```cmd
@@ -60,3 +58,7 @@ On the other hand, if you want to observe the classification in a specific examp
 ```cmd
 python main.py --mode demo --filename /media/user_home2/ynsuarez/AML/Proyecti/ODIR-5K/Testing_Images_treated_224/1000_left.jpg
 ```
+
+## GANS
+
+The generation of images can be obser
