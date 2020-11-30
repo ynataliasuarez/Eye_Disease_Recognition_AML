@@ -39,11 +39,12 @@ def main(config):
                     5: 1.,
                     6: 1.,
                     7: 2.505338078}
-
+    
     token = secrets.token_hex(2)
     new_folder = os.path.join(folder, token)
     if not os.path.exists(new_folder):
         os.makedirs(new_folder)
+
 
     def load_data_test( filenpy,filenpylabels,challenge = 0):
         """Loads the ODIR dataset.
@@ -56,11 +57,15 @@ def main(config):
         if challenge == 0:
             x_test = np.load(filenpy)
             y_test = np.load(filenpylabels)
+
+        else: 
+
+            x_test = np.load(filenpy)
+            y_test = 0
         
         return (x_test, y_test)
 
 
-    
 
     base_model = resnet50.ResNet50
 
@@ -77,8 +82,6 @@ def main(config):
     model = load_model(fileloadmodel)
     model.summary()
 
-
-
     defined_metrics = [
         tf.keras.metrics.BinaryAccuracy(name='accuracy'),
         tf.keras.metrics.Precision(name='precision'),
@@ -86,18 +89,9 @@ def main(config):
         tf.keras.metrics.AUC(name='auc'),
     ]
 
-
-
     sgd = SGD(lr=0.0001, decay=1e-6, momentum=0.9, nesterov=True)
 
     model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=defined_metrics)
-
-    (x_test, y_test) = load_data_test(filenpy,filenpylabels)
-
-    x_test_drawing = x_test
-
-
-    x_test = resnet50.preprocess_input(x_test)
 
     class_names = ['Normal', 'Diabetes', 'Glaucoma', 'Cataract', 'AMD', 'Hypertension', 'Myopia', 'Others']
 
@@ -105,23 +99,35 @@ def main(config):
     plotter = Plotter(class_names)
 
 
+    if mode == 'test': 
 
-    # test a prediction
-    test_predictions_baseline = model.predict(x_test)
-    print("plotting confusion matrix")
-    plotter.plot_confusion_matrix_generic(y_test, test_predictions_baseline, os.path.join(new_folder, 'matrizC.png'), 0)
+        (x_test, y_test) = load_data_test(filenpy,filenpylabels)
+        x_test_drawing = x_test
+        x_test = resnet50.preprocess_input(x_test)
+        test_predictions_baseline = model.predict(x_test)
+        print("plotting confusion matrix")
+        plotter.plot_confusion_matrix_generic(y_test, test_predictions_baseline, os.path.join(new_folder, 'matrizC.png'), 0)
 
-    # save the predictions
-    prediction_writer = Prediction(test_predictions_baseline, num_images, new_folder)
-    prediction_writer.save()
-    prediction_writer.save_all(y_test)
+        # save the predictions
+        prediction_writer = Prediction(test_predictions_baseline, num_images, new_folder)
+        prediction_writer.save()
+        prediction_writer.save_all(y_test)
 
-    # show the final score
-    score = FinalScore(new_folder)
-    score.output()
+        # show the final score
+        score = FinalScore(new_folder)
+        score.output()
 
-    # plot output results
-    plotter.plot_output(test_predictions_baseline, y_test, x_test_drawing, os.path.join(new_folder, 'OutputResults.png'))
+        # plot output results
+        plotter.plot_output(test_predictions_baseline, y_test, x_test_drawing, os.path.join(new_folder, 'OutputResults.png'))
+
+    else: 
+
+        (x_test, y_test) = load_data_test(filenpy,filenpylabels,1)
+        x_test_drawing = x_test
+        x_test = resnet50.preprocess_input(x_test)
+        test_predictions_baseline = model.predict(x_test)
+        print('The probabilities of diseases :' test_predictions_baseline)       
+    
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -136,6 +142,7 @@ if __name__ == '__main__':
     parser.add_argument('--file_npy_labels',type=str,default='odir_testing_labels_224.npy')
     parser.add_argument('--file_load_model',type=str,default='model_weights.h5')
     parser.add_argument('--num_images',type = int, default = 400)
+    passer.add_argument('--mode',type = str, default='test')
 
     config = parser.parse_args()
     print(config)
