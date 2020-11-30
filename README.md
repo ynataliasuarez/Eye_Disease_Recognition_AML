@@ -52,7 +52,7 @@ If you prove the method in BCV001 n
 
 To run the proposed method use the following command.
 ```cmd
-python main.py --mode test --file_npy_labels odir_testing_labels_224.npy --file_npy odir_testing_224.npy --folder results
+python main.py --mode test --folder results
 ```
 On the other hand, if you want to observe the classification in a specific example, you must run the following line:
 ```cmd
