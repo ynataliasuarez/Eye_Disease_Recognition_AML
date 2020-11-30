@@ -28,9 +28,12 @@ Absl:
 ```cmd 
 conda install -c anaconda absl-py
 ```
-
-
-In case of using the original data of the challenge, create the following folders, however, if you are using the folders located in the BCV0001 machine, ignore the following three steps: 
+In case of using the original data of the challenge, place all the files in the following folders, however, if you are using the folders located in the BCV0001 machine, ignore the following three steps:  
+```cmd
+ODIR-5K_Training_Dataset
+ODIR-5K_Testing_Images
+```
+And create the following folders
 ```cmd
 ODIR-5K_Testing_Images_cropped
 ODIR-5K_Testing_Images_treated_224
