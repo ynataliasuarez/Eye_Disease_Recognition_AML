@@ -31,6 +31,8 @@ def main(config):
     num_images = config.num_images
     mode = config.mode
     filename = config.filename
+    
+    
 
     os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
