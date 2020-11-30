@@ -50,7 +50,7 @@ python odir_patients_to_numpy.py
 ```
 If you prove the method in BCV001 n
 
-To run the proposed method use the following command.
+To run the proposed method use the following command. Note that if you change the folders is necessary change the different paths in main.py config()
 ```cmd
 python main.py --mode test --folder results
 ```
