@@ -88,7 +88,7 @@ if __name__ == '__main__':
                         default=['AMD,', 'Hipertension,','Miopia,'])
 
     # Test configuration.
-    parser.add_argument('--test_iters', type=int, default=200000, help='test model from this step')
+    parser.add_argument('--test_iters', type=int, default=10000, help='test model from this step')
 
     # Miscellaneous.
     parser.add_argument('--num_workers', type=int, default=1)
@@ -101,9 +101,9 @@ if __name__ == '__main__':
     parser.add_argument('--attr_path', type=str, default='/media/SSD1/ynsuarez/ProyectoInvestigacion/TrainFinal11.csv')
     parser.add_argument('--rafd_image_dir', type=str, default='data/RaFD/train')
     parser.add_argument('--log_dir', type=str, default='stargan/logs')
-    parser.add_argument('--model_save_dir', type=str, default='stargan')
-    parser.add_argument('--sample_dir', type=str, default='stargan/samples_AHM_10_pls_20')
-    parser.add_argument('--result_dir', type=str, default='stargan/prueba')
+    parser.add_argument('--model_save_dir', type=str, default='/media/SSD1/ynsuarez/ProyectoInvestigacion/GANs/stargan/models_AHM_pls')
+    parser.add_argument('--sample_dir', type=str, default='/media/SSD1/ynsuarez/ProyectoInvestigacion/GANs/stargan/samples_AHM_10_pls')
+    parser.add_argument('--result_dir', type=str, default='/media/SSD1/ynsuarez/AML/Retina_Gans/Result_test')
 
     # Step size.
     parser.add_argument('--log_step', type=int, default=10)
