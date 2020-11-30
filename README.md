@@ -77,3 +77,9 @@ To start, run the following line inside the StarGAN folder:
 $ python main.py
 ```
 
+## Credits 
+
+This repository is an adaptation from Yi Lin Sun's adaptation of [1], which can be found at https://github.com/JordiCorbilla/ocular-disease-intelligent-recognition-deep-learning
+
+
+
