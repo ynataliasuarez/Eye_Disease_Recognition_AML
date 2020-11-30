@@ -51,9 +51,9 @@ python odir_patients_to_numpy.py
 
 To run the proposed method use the following command.
 ```cmd
-python main.py --test
+python main.py --mode test --file_load_model model_weights.h5 --file_npy_labels odir_testing_labels_224.npy --file_npy odir_testing_224.npy --folder results
 ```
 On the other hand, if you want to observe the classification in a specific example, you must run the following line:
 ```cmd
-python main.py --demo --path_of_the_image
+python main.py --mode demo --filename path_of_the_image
 ```
