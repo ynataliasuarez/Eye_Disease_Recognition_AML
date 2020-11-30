@@ -35,8 +35,8 @@ if __name__ == '__main__':
     keep_aspect_ratio = False
     # set the quality of the resultant jpeg to 100%
     quality = 100
-    source_folder = r'/media/user_home2/ynsuarez/AML/Proyecti/ODIR-5K seg/Training_Images_cropped'
-    destination_folder = r'/media/user_home2/ynsuarez/AML/Proyecti/ODIR-5K seg/Training_Images_treated' + '_' + str(image_width)
+    source_folder = r'/media/user_home2/ynsuarez/AML/Proyecti/ODIR-5K/Training_Dataset_cropped'
+    destination_folder = r'/media/user_home2/ynsuarez/AML/Proyecti/ODIR-5K/Training_Images_treated' + '_' + str(image_width)
     # create logger
     logging.config.fileConfig('logging.conf')
     logger = logging.getLogger('odir')
