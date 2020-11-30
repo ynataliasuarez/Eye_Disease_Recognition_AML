@@ -24,10 +24,6 @@ CV2:
 ```cmd 
 conda install -c conda-forge/label/gcc7 opencv
 ```
-CV2:
-```cmd 
-conda install -c conda-forge/label/gcc7 opencv
-```
 Absl:
 ```cmd 
 conda install -c anaconda absl-py
