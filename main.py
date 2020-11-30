@@ -45,10 +45,7 @@ def main(config):
                     6: 1.,
                     7: 2.505338078}
 
-    token = secrets.token_hex(2)
-    new_folder = os.path.join(folder, token)
-    if not os.path.exists(new_folder):
-        os.makedirs(new_folder)
+    
     
     model = load_model(fileloadmodel)
     model.summary()
@@ -102,6 +99,11 @@ def main(config):
     plotter = Plotter(class_names)
 
     if mode == 'test':
+        
+        token = secrets.token_hex(2)
+        new_folder = os.path.join(folder, token)
+        if not os.path.exists(new_folder):
+           os.makedirs(new_folder)
 
         (x_test, y_test) = load_data_test(filenpy,filenpylabels)
         x_test_drawing = x_test
