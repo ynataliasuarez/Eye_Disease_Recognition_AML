@@ -61,4 +61,4 @@ python main.py --mode demo --filename /media/user_home2/ynsuarez/AML/Proyecti/OD
 
 ## GANS
 
-The generation of images can be obser
+The generation of images can be observe in BCV007 
