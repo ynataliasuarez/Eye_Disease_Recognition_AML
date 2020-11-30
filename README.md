@@ -20,6 +20,19 @@ Seaborn:
 ```cmd 
 conda install -c anaconda scikit-learn
 ```
+CV2:
+```cmd 
+conda install -c conda-forge/label/gcc7 opencv
+```
+CV2:
+```cmd 
+conda install -c conda-forge/label/gcc7 opencv
+```
+Absl:
+```cmd 
+conda install -c anaconda absl-py
+```
+
 
 In case of using the original data of the challenge, create the following folders, however, if you are using the folders located in the BCV0001 machine, ignore the following three steps: 
 ```cmd
