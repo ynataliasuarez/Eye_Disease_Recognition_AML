@@ -55,5 +55,5 @@ python main.py --mode test --file_load_model model_weights.h5 --file_npy_labels 
 ```
 On the other hand, if you want to observe the classification in a specific example, you must run the following line:
 ```cmd
-python main.py --mode demo --filename image.jpg
+python main.py --mode demo --filename /media/user_home2/ynsuarez/AML/Proyecti/ODIR-5K/Testing_Images_treated_224/1000_left.jpg
 ```
