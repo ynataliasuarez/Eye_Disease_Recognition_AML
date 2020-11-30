@@ -18,7 +18,7 @@ conda install -c anaconda scikit-learn
 ```
 Seaborn:
 ```cmd 
-conda install -c anaconda scikit-learn
+conda install -c anaconda seaborn
 ```
 CV2:
 ```cmd 
