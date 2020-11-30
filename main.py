@@ -16,6 +16,7 @@ import matplotlib.pyplot as plt
 from tensorflow.keras.optimizers import SGD
 from tensorflow.keras.models import load_model
 import numpy as np
+from PIL import Image
 
 def main(config):
 
@@ -28,6 +29,8 @@ def main(config):
     filenpylabels = config.file_npy_labels
     fileloadmodel = config.file_load_model
     num_images = config.num_images
+    mode = config.mode
+    filename = config.filename
 
     os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
@@ -39,12 +42,14 @@ def main(config):
                     5: 1.,
                     6: 1.,
                     7: 2.505338078}
-    
+
     token = secrets.token_hex(2)
     new_folder = os.path.join(folder, token)
     if not os.path.exists(new_folder):
         os.makedirs(new_folder)
-
+    
+    model = load_model(fileloadmodel)
+    model.summary()
 
     def load_data_test( filenpy,filenpylabels,challenge = 0):
         """Loads the ODIR dataset.
@@ -59,13 +64,10 @@ def main(config):
             y_test = np.load(filenpylabels)
 
         else: 
-
             x_test = np.load(filenpy)
             y_test = 0
         
         return (x_test, y_test)
-
-
 
     base_model = resnet50.ResNet50
 
@@ -79,8 +81,7 @@ def main(config):
     x = GlobalAveragePooling2D()(x)
     x = Dense(1024, activation='relu')(x)
     predictions = Dense(num_classes, activation='sigmoid')(x)
-    model = load_model(fileloadmodel)
-    model.summary()
+    
 
     defined_metrics = [
         tf.keras.metrics.BinaryAccuracy(name='accuracy'),
@@ -98,12 +99,13 @@ def main(config):
     # plot data input
     plotter = Plotter(class_names)
 
-
-    if mode == 'test': 
+    if mode == 'test':
 
         (x_test, y_test) = load_data_test(filenpy,filenpylabels)
         x_test_drawing = x_test
         x_test = resnet50.preprocess_input(x_test)
+
+        # test a prediction
         test_predictions_baseline = model.predict(x_test)
         print("plotting confusion matrix")
         plotter.plot_confusion_matrix_generic(y_test, test_predictions_baseline, os.path.join(new_folder, 'matrizC.png'), 0)
@@ -122,12 +124,26 @@ def main(config):
 
     else: 
 
+        img = Image.open( filename)
+        data = np.array( img, dtype='uint8' )
+        np.save( filename + '.npy', data)
         (x_test, y_test) = load_data_test(filenpy,filenpylabels,1)
         x_test_drawing = x_test
         x_test = resnet50.preprocess_input(x_test)
         test_predictions_baseline = model.predict(x_test)
-        print('The probabilities of diseases :' test_predictions_baseline)       
-    
+        for sub in test_predictions_baseline:
+                normal = sub[0]
+                diabetes = sub[1]
+                glaucoma = sub[2]
+                cataract = sub[3]
+                amd = sub[4]
+                hypertension = sub[5]
+                myopia = sub[6]
+                others = sub[7]
+
+        print('The probabilities of Normal,Diabetes, Glaucoma, Cataract, AMD, Hypertension,Myopia, Others', [normal,diabetes, glaucoma, cataract, amd, hypertension, myopia, others])
+        #print('The probabilities of Normal,Diabetes, Glaucoma, Cataract, AMD, Hypertension,Myopia, Others', test_predictions_baseline)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -142,7 +158,8 @@ if __name__ == '__main__':
     parser.add_argument('--file_npy_labels',type=str,default='odir_testing_labels_224.npy')
     parser.add_argument('--file_load_model',type=str,default='model_weights.h5')
     parser.add_argument('--num_images',type = int, default = 400)
-    passer.add_argument('--mode',type = str, default='test')
+    parser.add_argument('--mode',type = str, default = 'test')
+    parser.add_argument('--filename',type = str, default= 'image.jpg')
 
     config = parser.parse_args()
     print(config)
