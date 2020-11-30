@@ -6,13 +6,9 @@ The classification of eye disease is a fundamental process in medicine to be abl
 In case of using the original data of the challenge, create the following folders, however, if you are using the folders located in the BCV0001 machine, ignore the following three steps: 
 ```cmd
 ODIR-5K_Testing_Images_cropped
-ODIR-5K_Testing_Images_treated_128
 ODIR-5K_Testing_Images_treated_224
 ODIR-5K_Training_Dataset_cropped
-ODIR-5K_Training_Dataset_treated_128
 ODIR-5K_Training_Dataset_treated_224
-ODIR-5K_Training_Dataset_augmented_128
-ODIR-5K_Training_Dataset_augmented_224
 ```
 Then run the following commands, which will take about an hour and a half to run:
 ```cmd
