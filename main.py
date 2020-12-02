@@ -68,18 +68,18 @@ def main(config):
         
         return (x_test, y_test)
 
-    base_model = resnet50.ResNet50
+    #base_model = resnet50.ResNet50
 
-    base_model = base_model(weights='imagenet', include_top=False)
+    #base_model = base_model(weights='imagenet', include_top=False)
 
     # Comment this out if you want to train all layers
     #for layer in base_model.layers:
     #    layer.trainable = False
 
-    x = base_model.output
-    x = GlobalAveragePooling2D()(x)
-    x = Dense(1024, activation='relu')(x)
-    predictions = Dense(num_classes, activation='sigmoid')(x)
+   # x = base_model.output
+   # x = GlobalAveragePooling2D()(x)
+   # x = Dense(1024, activation='relu')(x)
+   # predictions = Dense(num_classes, activation='sigmoid')(x)
     
 
     defined_metrics = [
@@ -157,7 +157,7 @@ if __name__ == '__main__':
     parser.add_argument('--num_classes', type=int, default=8, help='number of classs ')
     parser.add_argument('--epochs', type=int, default=100, help='epochs')
     parser.add_argument('--patience', type=int, default=8, help='mini-batch size')
-    parser.add_argument('--folder',type=str, default='/Results')
+    parser.add_argument('--folder',type=str, default='Results')
     parser.add_argument('--file_npy',type=str,default='/media/user_home2/ynsuarez/AML/Proyecti/ODIR/ocular-disease-intelligent-recognition-deep-learning/odir_testing_224.npy')
     parser.add_argument('--file_npy_labels',type=str,default='/media/user_home2/ynsuarez/AML/Proyecti/ODIR/ocular-disease-intelligent-recognition-deep-learning/odir_testing_labels_224.npy')
     parser.add_argument('--file_load_model',type=str,default='/media/user_home2/ynsuarez/AML/Proyecti/ODIR/ocular-disease-intelligent-recognition-deep-learning/Results/Batchsize_8/model_weights.h5')
